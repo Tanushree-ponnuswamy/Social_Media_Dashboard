@@ -1,4 +1,30 @@
 
-@media (min-width: 50em) {
-    ......
+// breakpoints.scss
+// Up breakpoints (min-width)
+// 640px,1024px,1400px
+$breakpoints-up: (
+  'medium': 40em,     // 640px
+  'large': 64em,      // 1024px
+  'xlarge': 87.5em    // 1400px
+);
+
+// Down breakpoints (max-width)
+$breakpoints-down: (
+  'small': 39.9375em,   // 639px
+  'medium': 63.9375em,  // 1023px
+  'large': 87.4375em    // 1399px
+);
+
+// Mixin for min-width media queries
+@mixin breakpoint($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+// Mixin for max-width media queries
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
 }
